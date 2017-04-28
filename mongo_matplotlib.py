@@ -35,6 +35,25 @@ print(datetime_obj)
 print(datetime_obj.date())
 print(datetime_obj.time())
 
-plt.plot([1,2,3,4], [2,4,6,8])
+#y = [2, 4, 6, 8]
+x = [datetime.datetime(2017, 4, 28, 22, 25, 33),
+     datetime.datetime(2017, 4, 28, 22, 26, 33),
+     datetime.datetime(2017, 4, 28, 22, 27, 33),
+     datetime.datetime(2017, 4, 28, 22, 28, 33)]
+y = [1, 2, 3, 4]
+plt.plot(x, y)
 plt.ylabel('some numbers')
+#plt.show()
+
+print(coll.find({"event":"Battery"}).count())
+
+x = []
+y = []
+for event in coll.find({"event":"Battery"}, {"_id":0}):
+    print(event)
+    datetime_obj = datetime.datetime.strptime(event["time"], "%Y-%m-%dT%H:%M:%S.%fZ")
+    x.append(datetime_obj)
+    y.append(event["value"])
+
+plt.plot(x, y)
 plt.show()
