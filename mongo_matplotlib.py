@@ -36,4 +36,6 @@ for event in coll.find({"event":"Battery"}, {"_id":0}):
     y.append(event["value"])
 
 plt.plot(x, y)
+# beautify the x-labels
+plt.gcf().autofmt_xdate()
 plt.show()
