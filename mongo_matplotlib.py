@@ -13,37 +13,17 @@ password = sys.argv[4]
 print(host)
 
 client = MongoClient("mongodb://" + host + ":" + port + "/")
-print(client)
 db = client.mydb
-print(db)
 
 db.authenticate(name=user, password=password)
 
-print(db.collection_names())
-
 coll = db.sensor
-print(coll)
 
 one = coll.find_one({"event":"Battery"})
 print(one)
 
 datetime_str = one["time"]
 print(datetime_str)
-
-datetime_obj = datetime.datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%fZ")
-print(datetime_obj)
-print(datetime_obj.date())
-print(datetime_obj.time())
-
-#y = [2, 4, 6, 8]
-x = [datetime.datetime(2017, 4, 28, 22, 25, 33),
-     datetime.datetime(2017, 4, 28, 22, 26, 33),
-     datetime.datetime(2017, 4, 28, 22, 27, 33),
-     datetime.datetime(2017, 4, 28, 22, 28, 33)]
-y = [1, 2, 3, 4]
-plt.plot(x, y)
-plt.ylabel('some numbers')
-#plt.show()
 
 print(coll.find({"event":"Battery"}).count())
 
