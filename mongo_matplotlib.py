@@ -29,7 +29,7 @@ print(coll.find({"event":"Battery"}).count())
 
 x = []
 y = []
-for event in coll.find({"event":"Battery"}, {"_id":0}):
+for event in coll.find({"event":"Battery"}, {"_id":0}).sort("time"):
     print(event)
     datetime_obj = datetime.datetime.strptime(event["time"], "%Y-%m-%dT%H:%M:%S.%fZ")
     x.append(datetime_obj)
